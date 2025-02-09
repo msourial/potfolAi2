@@ -1,38 +1,21 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-
 export default function StockMarketSentiment() {
-  const [sentiment, setSentiment] = useState<string>('Loading...');
-
-  useEffect(() => {
-    const fetchStockData = async () => {
-      try {
-        const response = await fetch('/api/stockbot', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            message: "What's the current market sentiment for US stocks?"
-          })
-        });
-        
-        const data = await response.json();
-        setSentiment(data.response);
-      } catch (error) {
-        console.error('Error fetching stock data:', error);
-        setSentiment('Error loading market sentiment');
-      }
-    };
-
-    fetchStockData();
-  }, []);
+  const usStockSentiment = "🐂 Bullish! Market is looking strong! 🚀";
+  const cryptoSentiment = "🐻 Bearish. Crypto is down. 📉";
+  const commoditiesSentiment = "Neutral 😐";
+  const bondsSentiment = "Slightly Bullish 📈";
 
   return (
     <div>
       <h3 className="font-bold mb-2">US Stock Market Sentiment:</h3>
-      <p>{sentiment}</p>
+      <p>{usStockSentiment}</p>
+      <h3 className="font-bold mb-2">Crypto Sentiment:</h3>
+      <p>{cryptoSentiment}</p>
+      <h3 className="font-bold mb-2">Commodities Sentiment:</h3>
+      <p>{commoditiesSentiment}</p>
+      <h3 className="font-bold mb-2">Bonds Sentiment:</h3>
+      <p>{bondsSentiment}</p>
     </div>
   );
-} 
+}
